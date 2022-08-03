@@ -5,7 +5,6 @@ This repo contains code and data for [*Learning to Estimate External Forces of H
 
 ## Dataset
 **Download data** [here](https://drive.google.com/file/d/16gE9JlcLt1QWJ3woDCYFLfOCduC2WOeL/view?usp=sharing)
-Note. Subject6 is missing cam_17400881
 
 Preparing data (from home directory):
 Run `python3 prepare_data_force_pose.py`
@@ -13,7 +12,7 @@ Run `python3 prepare_data_force_pose.py`
 This will create three files:
 - data/data_2d_force_pose_pt_coco.npz
 - data/data_3d_force_pose.npz
-- data/data_2d_force_pose_gt.npz (unused?)
+- data/data_2d_force_pose_gt.npz
 
 ## Code
 
