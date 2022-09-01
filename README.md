@@ -55,7 +55,7 @@ python3 run_poseformer_force.py \
 	--evaluate $checkpoint_name \
 	--dataset force_pose \
 	-str Subject1,Subject2,Subject3,Subject4,Subject5,Subject6 \
-	-str Subject7,Subject8 \
+	-ste Subject7,Subject8 \
 	--input_pose_type $input_type
 	--exp_name eval_test
 ```
@@ -71,7 +71,7 @@ python3 run_poseformer_force.py \
 	--evaluate 2d_81frames_t2.bin \
 	--dataset force_pose \
 	-str  Subject1,Subject2,Subject3,Subject4,Subject5,Subject6 \
-	-str  Subject7,Subject8 \
+	-ste  Subject7,Subject8 \
 	--input_pose_type 2d \
 	--exp_name eval_test
 ```
