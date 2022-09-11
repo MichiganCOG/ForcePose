@@ -296,6 +296,9 @@ if args.resume or args.evaluate or args.pretrained:
     model_pos_train.load_state_dict(checkpoint['model_pos'], strict=False)
     model_pos.load_state_dict(checkpoint['model_pos'], strict=False)
 
+if in_chans == 3: #using 3D keypoints as input
+    poses_valid_2d = poses_valid
+
 test_generator = UnchunkedGenerator(cameras_valid, poses_valid, poses_valid_2d,
                                     pad=pad, causal_shift=causal_shift, augment=False,
                                     kps_left=kps_left, kps_right=kps_right, joints_left=joints_left, joints_right=joints_right, forces=forces_valid)
