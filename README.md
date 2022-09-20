@@ -14,6 +14,9 @@ This will create three files:
 - data/data_3d_force_pose.npz
 - data/data_2d_force_pose_gt.npz
 
+ForcePose contains the following movements (shown as triangulated COCO detections below)
+![GIF](media/movements.gif)
+
 ## Code
 
 ### System Requirements:
