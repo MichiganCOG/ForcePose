@@ -2,21 +2,65 @@
 
 This repo contains code and data for [*Learning to Estimate External Forces of Human Motion in Video, ACMMM 2022*](https://arxiv.org/pdf/2207.05845.pdf).
 
+## Update
+* (10/08/2023) Released ForcePosev1.1
+  	- Include toe and heel keypoint detections using [AlphaPose](https://github.com/MVIG-SJTU/AlphaPose/tree/master) (Coco Wholebody+256x192+ResNet50)
+  	- Include center-of-pressure (cop) data points
+  	- Fix misalignment between RGB videos and force plate (and mocap data)
 
-## Dataset
-**Download data** [here](https://drive.google.com/file/d/16gE9JlcLt1QWJ3woDCYFLfOCduC2WOeL/view?usp=sharing)
+## Data
+**Download data** [here](https://drive.google.com/file/d/1oWp1NmtrEf4hc-B2FICzLrVrdVwEMO3Q/view?usp=share_link)
 
-Preparing data (from home directory):
-Run `python3 prepare_data_force_pose.py`
+ForcePose contains motion capture markers, coco detections, and force plate magnitudes for the following movements (triangulated COCO detections shown):
 
-This will create three files:
-- data/data_2d_force_pose_pt_coco.npz
-- data/data_3d_force_pose.npz
-- data/data_2d_force_pose_gt.npz
-
-ForcePose contains (motion capture markers, coco detections, forceplate magnitudes) for the following movements (triangulated COCO detections shown)
 ![GIF](media/movements.gif)
 
+The ForcePose dataset contains 168 movements and 8 subjects (6 train, 2 validation).
+
+124 trials/movements in train
+44 trials/movements in validation
+
+Each sample contains multiple camera views (up to 8), 2D pose predictions on each view,
+triangulated poses for each time step, and corresponding Ground Reaction Forces (GRFs).
+The RGB data is recorded 50 fps, the motion capture at 100 fps, and the force plates at 600 fps.
+
+Data format (list):
+Each video/trial is a dict with the following keys:
+
+```
+- "subject" (string)
+- "movement" (string)
+- "frame_width" (int)
+- "frame_height" (int)
+- "total_frames" (int)
+- "frames" (list)
+        - "image_name" (string)
+        - "image_index" (int)
+        - "cam"_[x] (dict)
+                - 'box' (bounding box - xtl,ytl,xbr,ybr)
+                - 'keypoints' - 51 2D joints (17 joints x 3 [x,y,confidence]) (MSCOCO format)
+        - "triangulated_pose" (list)
+                - 17 triangulated joints (MSCOCO format)
+- "mocap" (dict)
+        - [marker_name] (list)
+                - N frames, marker position  
+- "grf" (dict) 
+        - 'time' (list)
+        - 'ground_force1_vx' (list)
+        - 'ground_force1_vy' (list)
+        - 'ground_force1_vz' (list)
+        - 'ground_force2_vx' (list)
+        - 'ground_force2_vy' (list)
+        - 'ground_force2_vz' (list)
+- "cop" (dict)
+        - 'time' (list)
+        - 'ground_force1_px' (list)
+        - 'ground_force1_py' (list)
+        - 'ground_force1_pz' (list)
+        - 'ground_force2_px' (list)
+        - 'ground_force2_py' (list)
+        - 'ground_force2_pz' (list)
+```
 ## Code
 
 ### System Requirements:
@@ -31,6 +75,14 @@ ForcePose contains (motion capture markers, coco detections, forceplate magnitud
 conda env create -f environment.yml
 conda activate forcepose
 ```
+
+### Preparing data (from home directory):
+Run `python3 prepare_data_force_pose.py`
+
+This will create three files:
+- data/data_2d_force_pose_pt_coco.npz
+- data/data_3d_force_pose.npz
+- data/data_2d_force_pose_gt.npz
 
 ### Testing:
 In our experiments, we optimize each modality for the lowest RMSE. Hence, the number of frames for pre-trained models will vary.
@@ -84,3 +136,14 @@ Remove the `evaluate` flag to train a new model or replace with `resume` or `per
 
 ## Acknowledgements
 This code base was implemented from [VideoPose3D](https://github.com/facebookresearch/VideoPose3D) and [Poseformer](https://github.com/zczcwh/PoseFormer).
+
+## Cite
+```
+@inproceedings{louis2022learning,
+  title={Learning to Estimate External Forces of Human Motion in Video},
+  author={Louis, Nathan and Corso, Jason J and Templin, Tylan N and Eliason, Travis D and Nicolella, Daniel P},
+  booktitle={Proceedings of the 30th ACM International Conference on Multimedia},
+  pages={3540--3548},
+  year={2022}
+}
+```
