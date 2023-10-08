@@ -14,7 +14,7 @@ This will create three files:
 - data/data_3d_force_pose.npz
 - data/data_2d_force_pose_gt.npz
 
-ForcePose contains the following movements (shown as triangulated COCO detections below)
+ForcePose contains (motion capture markers, coco detections, forceplate magnitudes) for the following movements (triangulated COCO detections shown)
 ![GIF](media/movements.gif)
 
 ## Code
