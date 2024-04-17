@@ -9,7 +9,7 @@ This repo contains code and data for [*Learning to Estimate External Forces of H
   	- Fix misalignment between RGB videos and force plate (and mocap data)
 
 ## Data
-**Download data** [here](https://drive.google.com/file/d/1oWp1NmtrEf4hc-B2FICzLrVrdVwEMO3Q/view?usp=share_link)
+**Download data** [here](https://prism.eecs.umich.edu/natlouis/forcepose/forcepose_1.1.tar.gz)
 
 ForcePose contains motion capture markers, coco detections, and force plate magnitudes for the following movements (triangulated COCO detections shown):
 
@@ -87,7 +87,7 @@ This will create three files:
 ### Testing:
 In our experiments, we optimize each modality for the lowest RMSE. Hence, the number of frames for pre-trained models will vary.
 
-**Download saved weights**: [mocap](https://drive.google.com/file/d/1c0WV6XFJ7sX_8VGr1ZJa5yoawPMjeEiM/view?usp=sharing), [coco_3d](https://drive.google.com/file/d/1pMCVymxN7pZFruZdsCKHREK_zow-FHZ3/view?usp=sharing), [coco_2d](https://drive.google.com/file/d/1kf14T4UrqEO6zCVF6RSg1IEh0bh5-Crw/view?usp=sharing)
+**Download saved weights**: [mocap](https://prism.eecs.umich.edu/natlouis/forcepose/mocap.tar.gz), [coco_3d](https://prism.eecs.umich.edu/natlouis/forcepose/coco_3d.tar.gz), [coco_2d](https://prism.eecs.umich.edu/natlouis/forcepose/coco_2d.tar.gz)
 and extract inside of `checkpoints` directory.
 
 | frames | num_force_thresh| input_type | data_path | checkpoint_name | 
