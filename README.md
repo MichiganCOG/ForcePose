@@ -3,13 +3,13 @@
 This repo contains code and data for [*Learning to Estimate External Forces of Human Motion in Video, ACMMM 2022*](https://arxiv.org/pdf/2207.05845.pdf).
 
 ## Update
-* (10/08/2023) Released ForcePosev1.1
+* (10/08/2023) Released [ForcePosev1.1](https://prism.eecs.umich.edu/natlouis/forcepose/forcepose_1.1.tar.gz)
   	- Include toe and heel keypoint detections using [AlphaPose](https://github.com/MVIG-SJTU/AlphaPose/tree/master) (Coco Wholebody+256x192+ResNet50)
   	- Include center-of-pressure (cop) data points
   	- Fix misalignment between RGB videos and force plate (and mocap data)
 
 ## Data
-**Download data** [here](https://prism.eecs.umich.edu/natlouis/forcepose/forcepose_1.1.tar.gz)
+**Download data** [here (ForcePosev1.0)](https://prism.eecs.umich.edu/natlouis/forcepose/forcepose.tar.gz)
 
 ForcePose contains motion capture markers, coco detections, and force plate magnitudes for the following movements (triangulated COCO detections shown):
 
@@ -76,8 +76,14 @@ conda env create -f environment.yml
 conda activate forcepose
 ```
 
-### Preparing data (from home directory):
-Run `python3 prepare_data_force_pose.py`
+### Preparing data:
+```bash
+mv forcepose.tar.gz data/
+cd data
+tar -xvf forcepose.tar.gz
+cd ..
+python3 data/prepare_data_force_pose.py
+```
 
 This will create three files:
 - data/data_2d_force_pose_pt_coco.npz
