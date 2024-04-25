@@ -98,7 +98,7 @@ if __name__ == '__main__':
     
     file_list = glob(os.path.join(args.source_json, '*.json'))
     print(file_list)
-    file_list.remove(os.path.join(args.source_json, 'test.json')) #just a symbolic link
+    #file_list.remove(os.path.join(args.source_json, 'test.json')) #just a symbolic link
     for f in file_list:
         with open(f, 'r') as f_:
             data = json.load(f_)
